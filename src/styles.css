@@ -38,8 +38,8 @@ body::before {
   display: grid;
   min-height: calc(100vh - 4rem);
   align-items: center;
-  gap: clamp(2rem, 5vw, 5rem);
-  grid-template-columns: minmax(0, 0.92fr) minmax(22rem, 1.08fr);
+  gap: clamp(1rem, 4vw, 4rem);
+  grid-template-columns: minmax(0, 1.08fr) minmax(18rem, 0.82fr);
   padding-block: clamp(3rem, 8vw, 6rem);
 }
 
@@ -70,28 +70,72 @@ body::before {
 }
 
 .keyboard-panel {
-  min-height: clamp(24rem, 48vw, 40rem);
-  border: 1px solid rgb(0 229 255 / 18%);
-  border-radius: var(--pf-radius-lg);
-  background:
-    radial-gradient(circle at 50% 10%, rgb(0 229 255 / 20%), transparent 35%),
-    linear-gradient(180deg, rgb(255 255 255 / 5%), transparent),
-    var(--pf-color-surface);
-  box-shadow: var(--pf-shadow-lg);
-  overflow: hidden;
+  position: relative;
+  min-height: clamp(18rem, 34vw, 30rem);
+  overflow: visible;
+  filter: drop-shadow(0 28px 46px rgb(0 0 0 / 46%)) drop-shadow(0 0 34px rgb(0 229 255 / 15%));
+}
+
+.keyboard-panel::before {
+  position: absolute;
+  inset: 18% 6% 10%;
+  z-index: -1;
+  background: radial-gradient(ellipse at center, rgb(0 229 255 / 20%), transparent 62%);
+  filter: blur(18px);
+  content: "";
 }
 
 .keyboard-canvas {
   width: 100%;
-  height: clamp(24rem, 48vw, 40rem);
+  height: clamp(18rem, 34vw, 30rem);
+  overflow: visible;
+}
+
+.keyboard-canvas canvas {
+  background: transparent !important;
 }
 
 .keyboard-loading {
   display: grid;
-  min-height: clamp(24rem, 48vw, 40rem);
+  min-height: clamp(18rem, 34vw, 30rem);
   place-items: center;
   color: var(--pf-color-muted);
   font-family: var(--pf-font-mono);
+}
+
+.keyboard-fallback {
+  display: grid;
+  gap: 0.45rem;
+  width: min(100%, 28rem);
+  margin-inline: auto;
+  padding-block: clamp(2rem, 6vw, 4rem);
+  transform: rotateX(58deg) rotateZ(-12deg);
+  transform-style: preserve-3d;
+}
+
+.fallback-row {
+  display: flex;
+  justify-content: center;
+  gap: 0.4rem;
+}
+
+.fallback-key {
+  display: grid;
+  min-width: 2.1rem;
+  height: 1.8rem;
+  place-items: center;
+  border: 1px solid rgb(0 229 255 / 22%);
+  border-radius: 0.32rem;
+  background: #1f2730;
+  color: var(--pf-color-text-soft);
+  box-shadow: 0 0.35rem 0 #0b0f14, 0 1rem 1.5rem rgb(0 0 0 / 32%);
+  font-family: var(--pf-font-mono);
+  font-size: 0.66rem;
+  font-weight: 700;
+}
+
+.fallback-key-wide {
+  min-width: 7rem;
 }
 
 .command-strip {
@@ -219,7 +263,7 @@ body::before {
 
   .keyboard-panel,
   .keyboard-canvas {
-    min-height: 25rem;
+    min-height: 22rem;
   }
 
   .section-heading-row {
@@ -234,7 +278,7 @@ body::before {
 
   .keyboard-panel,
   .keyboard-canvas {
-    min-height: 21rem;
+    min-height: 17rem;
   }
 
   .command-chip {

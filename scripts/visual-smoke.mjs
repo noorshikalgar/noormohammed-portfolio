@@ -10,10 +10,10 @@ await mkdir(outDir, { recursive: true });
 const browser = await chromium.launch();
 const page = await browser.newPage({ viewport: { width: 1440, height: 1000 }, deviceScaleFactor: 1 });
 await page.goto(baseUrl, { waitUntil: "domcontentloaded" });
-await page.waitForSelector("canvas", { state: "visible" });
+await page.waitForSelector(".keyboard-panel", { state: "visible" });
 await page.waitForTimeout(1200);
 await page.screenshot({ path: `${outDir}/home-desktop.png`, fullPage: true });
-const canvasScreenshot = await page.locator("canvas").screenshot({ path: `${outDir}/keyboard-canvas.png` });
+const keyboardScreenshot = await page.locator(".keyboard-panel").screenshot({ path: `${outDir}/keyboard-panel.png` });
 
 const mobile = await browser.newPage({
   viewport: { width: 390, height: 844 },
@@ -21,11 +21,11 @@ const mobile = await browser.newPage({
   isMobile: true,
 });
 await mobile.goto(baseUrl, { waitUntil: "domcontentloaded" });
-await mobile.waitForSelector("canvas", { state: "visible" });
+await mobile.waitForSelector(".keyboard-panel", { state: "visible" });
 await mobile.waitForTimeout(1200);
 await mobile.screenshot({ path: `${outDir}/home-mobile.png`, fullPage: true });
 
-const canvasPng = PNG.sync.read(canvasScreenshot);
+const canvasPng = PNG.sync.read(keyboardScreenshot);
 let nonBackgroundPixels = 0;
 for (let y = 0; y < canvasPng.height; y += 12) {
   for (let x = 0; x < canvasPng.width; x += 12) {

@@ -88,9 +88,37 @@ function Keyboard() {
 }
 
 export function KeyboardLab() {
+  const [contextLost, setContextLost] = useState(false);
+
+  if (contextLost) {
+    return (
+      <div className="keyboard-fallback" aria-label="3D keyboard preview">
+        {rows.map((row) => (
+          <div className="fallback-row" key={row.join("-")}>
+            {row.map((key) => (
+              <span className={key === "space" ? "fallback-key fallback-key-wide" : "fallback-key"} key={key}>
+                {key}
+              </span>
+            ))}
+          </div>
+        ))}
+      </div>
+    );
+  }
+
   return (
     <div className="keyboard-canvas" aria-label="Interactive 3D keyboard">
-      <Canvas shadows camera={{ position: [0, 0.4, 6.8], fov: 42 }}>
+      <Canvas
+        shadows
+        camera={{ position: [0, 0.45, 7.2], fov: 38 }}
+        gl={{ alpha: true, antialias: true, preserveDrawingBuffer: true }}
+        style={{ background: "transparent" }}
+        onCreated={({ gl, scene }) => {
+          scene.background = null;
+          gl.setClearColor("#000000", 0);
+          gl.domElement.addEventListener("webglcontextlost", () => setContextLost(true), { once: true });
+        }}
+      >
         <ambientLight intensity={0.65} />
         <directionalLight position={[3, 4, 5]} intensity={2.2} castShadow />
         <pointLight position={[-3, -2, 3]} intensity={1.8} color="#00bcd4" />
