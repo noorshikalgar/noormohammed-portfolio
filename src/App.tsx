@@ -9,12 +9,8 @@ import {
   ServerCog,
   Terminal,
 } from "lucide-react";
-import { lazy, Suspense } from "react";
+import { HeroTerminal } from "./components/HeroTerminal";
 import { portfolio } from "./data/portfolio";
-
-const KeyboardLab = lazy(() =>
-  import("./components/KeyboardLab").then((module) => ({ default: module.KeyboardLab })),
-);
 
 const iconMap = {
   frontend: Braces,
@@ -69,10 +65,8 @@ function App() {
             </div>
           </div>
 
-          <div className="keyboard-panel">
-            <Suspense fallback={<div className="keyboard-loading">loading keyboard lab...</div>}>
-              <KeyboardLab />
-            </Suspense>
+          <div className="hero-terminal-panel">
+            <HeroTerminal />
           </div>
         </section>
 
