@@ -17,8 +17,10 @@ function Keycap({ label, x, y, width = 1 }: { label: string; x: number; y: numbe
 
   useFrame(({ clock }) => {
     if (!mesh.current) return;
-    const pulse = Math.sin(clock.elapsedTime * 2.4 + x) * 0.015;
-    mesh.current.position.z = active ? 0.18 : 0.08 + pulse;
+    const wave = Math.sin(clock.elapsedTime * 3.2 + x * 0.8 + y * 1.4);
+    const autoPress = wave > 0.92 ? -0.09 : 0;
+    const float = Math.sin(clock.elapsedTime * 2.1 + x) * 0.01;
+    mesh.current.position.z = active ? -0.1 : 0.08 + autoPress + float;
   });
 
   return (
@@ -30,20 +32,22 @@ function Keycap({ label, x, y, width = 1 }: { label: string; x: number; y: numbe
         onPointerOver={() => setActive(true)}
         onPointerOut={() => setActive(false)}
       >
-        <boxGeometry args={[width * 0.82, 0.72, 0.16]} />
+        <boxGeometry args={[width * 0.82, 0.72, 0.12]} />
         <meshStandardMaterial
-          color={active ? "#42dff2" : "#1f2730"}
-          emissive={active ? "#00bcd4" : "#05080a"}
-          emissiveIntensity={active ? 0.35 : 0.05}
-          metalness={0.25}
-          roughness={0.55}
+          color={active ? "#00e5ff" : "#0b151b"}
+          emissive={active ? "#00e5ff" : "#00333b"}
+          emissiveIntensity={active ? 0.45 : 0.12}
+          metalness={0.15}
+          roughness={0.42}
+          transparent
+          opacity={active ? 0.9 : 0.68}
         />
       </mesh>
       <Text
-        position={[0, -0.02, 0.2]}
+        position={[0, -0.02, 0.18]}
         rotation={[0, 0, 0]}
         fontSize={label.length > 4 ? 0.12 : 0.16}
-        color={active ? "#071113" : "#dce7ef"}
+        color={active ? "#071113" : "#9bf7ff"}
         anchorX="center"
         anchorY="middle"
       >
@@ -76,10 +80,6 @@ function Keyboard() {
 
   return (
     <group ref={group} rotation={[-0.78, 0, -0.18]} position={[0, -0.15, 0]}>
-      <mesh receiveShadow position={[0, 0, -0.06]}>
-        <boxGeometry args={[8.9, 4.5, 0.18]} />
-        <meshStandardMaterial color="#11171d" metalness={0.35} roughness={0.4} />
-      </mesh>
       {keys.map((key) => (
         <Keycap key={`${key.label}-${key.x}-${key.y}`} {...key} />
       ))}
@@ -110,7 +110,7 @@ export function KeyboardLab() {
     <div className="keyboard-canvas" aria-label="Interactive 3D keyboard">
       <Canvas
         shadows
-        camera={{ position: [0, 0.5, 7.6], fov: 35 }}
+        camera={{ position: [0, 0.5, 7.6], fov: 34 }}
         gl={{ alpha: true, antialias: true, preserveDrawingBuffer: true }}
         style={{ background: "transparent" }}
         onCreated={({ gl, scene }) => {
@@ -119,9 +119,9 @@ export function KeyboardLab() {
           gl.domElement.addEventListener("webglcontextlost", () => setContextLost(true), { once: true });
         }}
       >
-        <ambientLight intensity={0.65} />
-        <directionalLight position={[3, 4, 5]} intensity={2.2} castShadow />
-        <pointLight position={[-3, -2, 3]} intensity={1.8} color="#00bcd4" />
+        <ambientLight intensity={0.9} />
+        <directionalLight position={[3, 4, 5]} intensity={1.8} castShadow />
+        <pointLight position={[-3, -2, 3]} intensity={2.2} color="#00e5ff" />
         <group scale={0.86}>
           <Keyboard />
         </group>

@@ -72,12 +72,13 @@ body::before {
 
 .keyboard-panel {
   position: absolute;
-  top: clamp(5rem, 15vh, 9rem);
+  top: 50%;
   right: clamp(0rem, 3vw, 4rem);
   z-index: 1;
   width: clamp(19rem, 34vw, 31rem);
   height: clamp(12rem, 22vw, 19rem);
   overflow: visible;
+  transform: translateY(-50%);
   filter: drop-shadow(0 28px 46px rgb(0 0 0 / 46%)) drop-shadow(0 0 34px rgb(0 229 255 / 15%));
 }
 
@@ -131,9 +132,9 @@ body::before {
   place-items: center;
   border: 1px solid rgb(0 229 255 / 22%);
   border-radius: 0.32rem;
-  background: #1f2730;
-  color: var(--pf-color-text-soft);
-  box-shadow: 0 0.35rem 0 #0b0f14, 0 1rem 1.5rem rgb(0 0 0 / 32%);
+  background: rgb(0 229 255 / 7%);
+  color: var(--pf-color-accent-strong);
+  box-shadow: 0 0.25rem 0 rgb(0 229 255 / 10%), 0 1rem 1.5rem rgb(0 0 0 / 32%);
   font-family: var(--pf-font-mono);
   font-size: 0.66rem;
   font-weight: 700;
@@ -277,6 +278,7 @@ body::before {
     width: min(100%, 28rem);
     height: 16rem;
     margin: var(--pf-space-8) auto 0;
+    transform: none;
   }
 
   .section-heading-row {
