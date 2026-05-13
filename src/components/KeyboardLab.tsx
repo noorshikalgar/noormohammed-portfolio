@@ -110,7 +110,7 @@ export function KeyboardLab() {
     <div className="keyboard-canvas" aria-label="Interactive 3D keyboard">
       <Canvas
         shadows
-        camera={{ position: [0, 0.45, 7.2], fov: 38 }}
+        camera={{ position: [0, 0.5, 7.6], fov: 35 }}
         gl={{ alpha: true, antialias: true, preserveDrawingBuffer: true }}
         style={{ background: "transparent" }}
         onCreated={({ gl, scene }) => {
@@ -122,7 +122,9 @@ export function KeyboardLab() {
         <ambientLight intensity={0.65} />
         <directionalLight position={[3, 4, 5]} intensity={2.2} castShadow />
         <pointLight position={[-3, -2, 3]} intensity={1.8} color="#00bcd4" />
-        <Keyboard />
+        <group scale={0.86}>
+          <Keyboard />
+        </group>
         <OrbitControls enablePan={false} minDistance={4.8} maxDistance={8.5} />
       </Canvas>
     </div>
