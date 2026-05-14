@@ -1,3 +1,4 @@
+import { Volume2, VolumeX } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
 
 const terminalSteps = [
@@ -182,8 +183,14 @@ export function HeroTerminal() {
           <span className="terminal-dot terminal-dot-yellow" />
           <span className="terminal-dot terminal-dot-green" />
           <span className="terminal-title">noor@portfolio:~</span>
-          <button className="terminal-sound-toggle" type="button" onClick={toggleSound}>
-            {isMuted ? "sound off" : "sound on"}
+          <button
+            className="terminal-sound-toggle"
+            type="button"
+            onClick={toggleSound}
+            aria-label={isMuted ? "Turn terminal sound on" : "Turn terminal sound off"}
+            title={isMuted ? "Sound off" : "Sound on"}
+          >
+            {isMuted ? <VolumeX size={14} strokeWidth={2.2} /> : <Volume2 size={14} strokeWidth={2.2} />}
           </button>
         </div>
         <div className="terminal-screen" ref={screenRef}>
