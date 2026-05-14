@@ -32,6 +32,8 @@ type TerminalEntry =
 export function HeroTerminal() {
   const audioContext = useRef<AudioContext | null>(null);
   const isMutedRef = useRef(true);
+  const screenRef = useRef<HTMLDivElement | null>(null);
+  const terminalEndRef = useRef<HTMLDivElement | null>(null);
   const timers = useRef<number[]>([]);
   const [history, setHistory] = useState<TerminalEntry[]>([]);
   const [currentCommand, setCurrentCommand] = useState("");
@@ -40,6 +42,13 @@ export function HeroTerminal() {
   const [isMuted, setIsMuted] = useState(true);
 
   const commandQueue = useMemo(() => terminalSteps, []);
+
+  useEffect(() => {
+    terminalEndRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "end",
+    });
+  }, [history, currentCommand]);
 
   const playKeySound = () => {
     if (isMutedRef.current) return;
@@ -177,7 +186,7 @@ export function HeroTerminal() {
             {isMuted ? "sound off" : "sound on"}
           </button>
         </div>
-        <div className="terminal-screen">
+        <div className="terminal-screen" ref={screenRef}>
           {history.map((entry, index) =>
             entry.type === "command" ? (
               <div className="terminal-line terminal-command" key={`${entry.type}-${entry.value}-${index}`}>
@@ -199,6 +208,7 @@ export function HeroTerminal() {
             <span>{currentCommand}</span>
             <span className="terminal-cursor" />
           </div>
+          <div className="terminal-end" ref={terminalEndRef} />
         </div>
       </div>
     </div>

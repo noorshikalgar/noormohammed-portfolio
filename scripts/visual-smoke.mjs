@@ -10,7 +10,9 @@ const browser = await chromium.launch();
 const page = await browser.newPage({ viewport: { width: 1440, height: 1000 }, deviceScaleFactor: 1 });
 await page.goto(baseUrl, { waitUntil: "domcontentloaded" });
 await page.waitForSelector(".hero-terminal", { state: "visible" });
-await page.waitForFunction(() => document.querySelector(".terminal-screen")?.textContent?.includes("Senior Engineer"));
+await page.waitForFunction(() =>
+  document.querySelector(".terminal-screen")?.textContent?.includes("ready to ship resilient web experiences"),
+);
 await page.screenshot({ path: `${outDir}/home-desktop.png`, fullPage: true });
 await page.locator(".hero-terminal").screenshot({ path: `${outDir}/hero-terminal.png` });
 
@@ -21,7 +23,9 @@ const mobile = await browser.newPage({
 });
 await mobile.goto(baseUrl, { waitUntil: "domcontentloaded" });
 await mobile.waitForSelector(".hero-terminal", { state: "visible" });
-await mobile.waitForFunction(() => document.querySelector(".terminal-screen")?.textContent?.includes("Senior Engineer"));
+await mobile.waitForFunction(() =>
+  document.querySelector(".terminal-screen")?.textContent?.includes("ready to ship resilient web experiences"),
+);
 await mobile.screenshot({ path: `${outDir}/home-mobile.png`, fullPage: true });
 
 const terminalText = await page.locator(".terminal-screen").innerText();

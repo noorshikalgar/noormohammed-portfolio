@@ -94,6 +94,10 @@ body::before {
 .terminal-desktop {
   position: relative;
   min-height: 25.5rem;
+  --cursor-start-x: 16%;
+  --cursor-start-y: 74%;
+  --cursor-target-x: 50%;
+  --cursor-target-y: 42%;
 }
 
 .terminal-desktop-icon {
@@ -147,8 +151,8 @@ body::before {
 
 .desktop-cursor {
   position: absolute;
-  top: 74%;
-  left: 16%;
+  top: var(--cursor-start-y);
+  left: var(--cursor-start-x);
   z-index: 8;
   width: 1.1rem;
   height: 1.1rem;
@@ -240,12 +244,24 @@ body::before {
   align-content: start;
   gap: 0.7rem;
   min-height: 20.5rem;
+  max-height: 20.5rem;
   color: var(--pf-color-text-soft);
   font-family: var(--pf-font-mono);
   font-size: clamp(0.82rem, 1.15vw, 0.98rem);
   line-height: 1.55;
-  overflow: hidden;
+  overflow-y: auto;
   padding: clamp(1rem, 2.5vw, 1.35rem);
+  scrollbar-color: rgb(0 229 255 / 24%) transparent;
+  scrollbar-width: thin;
+}
+
+.terminal-screen::-webkit-scrollbar {
+  width: 0.42rem;
+}
+
+.terminal-screen::-webkit-scrollbar-thumb {
+  border-radius: var(--pf-radius-pill);
+  background: rgb(0 229 255 / 24%);
 }
 
 .terminal-line {
@@ -429,7 +445,9 @@ body::before {
 @keyframes cursor-to-terminal {
   0% {
     opacity: 0;
-    transform: translate(0, 0) scale(0.9);
+    top: var(--cursor-start-y);
+    left: var(--cursor-start-x);
+    transform: translate(-50%, -50%) scale(0.9);
   }
 
   14% {
@@ -438,18 +456,24 @@ body::before {
 
   100% {
     opacity: 1;
-    transform: translate(15.4rem, -8.4rem) scale(1);
+    top: var(--cursor-target-y);
+    left: var(--cursor-target-x);
+    transform: translate(-50%, -50%) scale(1);
   }
 }
 
 @keyframes cursor-click {
   50% {
-    transform: translate(15.4rem, -8.4rem) scale(0.78);
+    top: var(--cursor-target-y);
+    left: var(--cursor-target-x);
+    transform: translate(-50%, -50%) scale(0.78);
   }
 
   100% {
     opacity: 0;
-    transform: translate(15.4rem, -8.4rem) scale(1);
+    top: var(--cursor-target-y);
+    left: var(--cursor-target-x);
+    transform: translate(-50%, -50%) scale(1);
   }
 }
 
@@ -508,6 +532,7 @@ body::before {
 
   .terminal-screen {
     min-height: 19rem;
+    max-height: 19rem;
   }
 
   .command-chip {
