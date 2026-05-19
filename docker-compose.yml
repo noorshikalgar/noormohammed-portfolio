@@ -1,0 +1,9 @@
+services:
+  portfolio:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: noor-portfolio
+    ports:
+      - "18080:80"
+    restart: unless-stopped
