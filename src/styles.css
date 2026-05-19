@@ -87,6 +87,16 @@ body[data-view="v3"]::after {
   content: none;
 }
 
+body[data-view="wallpaper"] {
+  background: #000;
+  color: #ccc;
+}
+
+body[data-view="wallpaper"]::before,
+body[data-view="wallpaper"]::after {
+  content: none;
+}
+
 .view-switcher {
   display: inline-flex;
   align-items: center;
@@ -611,6 +621,136 @@ body[data-view="v3"]::after {
   text-shadow: none;
 }
 
+.wallpaper-page {
+  min-height: 100vh;
+  padding: 0;
+}
+
+.wallpaper-stage {
+  display: grid;
+  gap: 0.9rem;
+  min-height: 100vh;
+  place-items: center;
+}
+
+.wallpaper-toolbar {
+  display: flex;
+  justify-content: center;
+}
+
+.wallpaper-capture-button {
+  border: 1px solid rgb(255 255 255 / 0.12);
+  background: rgb(255 255 255 / 0.04);
+  color: #fdf4c1;
+  cursor: pointer;
+  font-family: "JetBrains Mono", "Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 0.85rem;
+  padding: 0.7rem 1rem;
+}
+
+.wallpaper-frame {
+  display: grid;
+  place-items: center;
+  padding: 0.6rem;
+  border: 1px solid rgb(255 255 255 / 0.08);
+  background: rgb(255 255 255 / 0.02);
+}
+
+.wallpaper-canvas {
+  width: min(100%, 430px);
+  aspect-ratio: 390 / 844;
+  background:
+    radial-gradient(circle at top center, rgb(255 255 255 / 0.02), transparent 30%),
+    #000;
+  overflow: hidden;
+}
+
+.wallpaper-safe-top {
+  height: 7.5rem;
+}
+
+.wallpaper-content {
+  padding: 0 1.15rem 1.8rem;
+}
+
+.wallpaper-line {
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr);
+  column-gap: 0.8rem;
+  align-items: start;
+}
+
+.wallpaper-line-number {
+  color: rgb(255 255 255 / 22%);
+  font-family: "JetBrains Mono", "Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 0.86rem;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.9;
+  text-align: right;
+  user-select: none;
+}
+
+.wallpaper-line-content {
+  min-width: 0;
+  color: #ccc;
+  font-family: "JetBrains Mono", "Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 0.8rem;
+  line-height: 1.9;
+}
+
+.wallpaper-file {
+  color: #fdf4c1;
+  font-size: 0.96rem;
+  font-weight: 700;
+}
+
+.wallpaper-h1 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.18em;
+  align-items: baseline;
+  color: #fdf4c1;
+  font-size: clamp(1.8rem, 6.2vw, 2.2rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  max-width: 100%;
+}
+
+.wallpaper-h1-mark {
+  color: #beff00;
+}
+
+.wallpaper-quote {
+  color: #ccc;
+  font-size: 0.8rem;
+  display: inline-block;
+  max-width: 26ch;
+}
+
+.wallpaper-quote-mark {
+  color: #518b8b;
+  font-weight: 700;
+}
+
+.wallpaper-h2 {
+  color: #fabf47;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.wallpaper-bullet {
+  color: #ccc;
+  display: inline-block;
+  max-width: 27ch;
+  font-size: 0.8rem;
+}
+
+.wallpaper-bullet-mark {
+  color: #d5c5a1;
+  font-weight: 700;
+}
+
 .rawmd-toprow {
   position: relative;
   z-index: 1;
@@ -646,6 +786,19 @@ body[data-view="v3"]::after {
   border: 1px solid rgb(255 255 255 / 0.08);
   background: rgb(255 255 255 / 0.02);
   padding: 0.9rem 1rem;
+}
+
+.rawmd-topbrand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.95rem;
+}
+
+.rawmd-logo {
+  display: block;
+  width: 6.8rem;
+  height: auto;
+  flex: 0 0 auto;
 }
 
 .rawmd-toplabel {
@@ -1390,6 +1543,11 @@ body[data-view="v3"]::after {
     align-items: flex-start;
   }
 
+  .rawmd-topbrand {
+    width: 100%;
+    justify-content: space-between;
+  }
+
   .rawmd-toplinks {
     gap: 8px;
   }
@@ -1432,6 +1590,18 @@ body[data-view="v3"]::after {
   .rawmd-token-h3 {
     font-size: 1.1rem;
   }
+
+  .wallpaper-page {
+    padding: 0;
+  }
+
+  .wallpaper-stage {
+    min-height: 100vh;
+  }
+
+  .wallpaper-canvas {
+    width: 100%;
+  }
 }
 
 @media (max-width: 480px) {
@@ -1447,6 +1617,12 @@ body[data-view="v3"]::after {
 
   .rawmd-toplabel {
     width: 100%;
+  }
+
+  .rawmd-topbrand {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.55rem;
   }
 
   .rawmd-toplinks {

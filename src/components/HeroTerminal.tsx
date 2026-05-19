@@ -4,7 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 const terminalSteps = [
   {
     command: "whoami --profile",
-    output: ["Noor Mohammed", "Senior Engineer in Web Development"],
+    output: ["Noormohammed", "Senior Engineer in Web Development"],
   },
   {
     command: "cat focus.md",

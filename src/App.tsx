@@ -1,4 +1,5 @@
-import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
+import { toPng } from "html-to-image";
 import {
   ArrowUpRight,
   Braces,
@@ -23,7 +24,7 @@ const iconMap = {
   architecture: Layers3,
 };
 
-type ViewMode = "v1" | "v2" | "v3";
+type ViewMode = "v1" | "v2" | "v3" | "wallpaper";
 
 const rawMdSections = [
   { label: "README.md", id: "rawmd-readme" },
@@ -215,7 +216,10 @@ function getInitialView(): ViewMode {
 
   const params = new URLSearchParams(window.location.search);
   const requestedView = params.get("view");
-  return requestedView === "v1" || requestedView === "v2" || requestedView === "v3"
+  return requestedView === "v1" ||
+    requestedView === "v2" ||
+    requestedView === "v3" ||
+    requestedView === "wallpaper"
     ? requestedView
     : "v3";
 }
@@ -595,9 +599,9 @@ function LandingPageV3() {
 
   const rawMarkdown = `README.md
 
-# Noormohammed S
+# Noormohammed Shikalgar
 
-> Full-stack engineer building AI systems, developer tooling, and calm high-signal products.
+> Noormohammed Shikalgar is a Full-stack engineer building AI systems, developer tooling, and calm high-signal products.
 
 ## Identity
 
@@ -821,18 +825,21 @@ Architecture determines survival.
       >
         <div className="rawmd-toprow-inner">
           <div className="rawmd-topbar">
-            <button
-              aria-controls="rawmd-source-map-links"
-              aria-expanded={isSourceMapOpen}
-              className="rawmd-toplabel rawmd-toplabel-button"
-              onClick={() => setIsSourceMapOpen((value) => !value)}
-              type="button"
-            >
-              <span>source map</span>
-              <span className="rawmd-toplabel-icon" aria-hidden="true">
-                {isSourceMapOpen ? "[-]" : "[+]"}
-              </span>
-            </button>
+            <div className="rawmd-topbrand">
+              <img alt="[N$_] portfolio logo" className="rawmd-logo" src="/logo.svg" />
+              <button
+                aria-controls="rawmd-source-map-links"
+                aria-expanded={isSourceMapOpen}
+                className="rawmd-toplabel rawmd-toplabel-button"
+                onClick={() => setIsSourceMapOpen((value) => !value)}
+                type="button"
+              >
+                <span>source map</span>
+                <span className="rawmd-toplabel-icon" aria-hidden="true">
+                  {isSourceMapOpen ? "[-]" : "[+]"}
+                </span>
+              </button>
+            </div>
             <div
               className={
                 isSourceMapOpen
@@ -877,6 +884,97 @@ Architecture determines survival.
   );
 }
 
+function LandingPageWallpaper() {
+  const captureRef = useRef<HTMLDivElement | null>(null);
+  const wallpaperLines = [
+    { number: 1, type: "file", text: "README.md" },
+    { number: 2, type: "blank", text: "" },
+    { number: 3, type: "h1", text: "# Noormohammed Shikalgar" },
+    {
+      number: 4,
+      type: "quote",
+      text: "> Noormohammed Shikalgar is a Full-stack engineer building AI systems, developer tooling, and calm high-signal products.",
+    },
+    { number: 5, type: "blank", text: "" },
+    { number: 6, type: "h2", text: "## Identity" },
+    { number: 7, type: "blank", text: "" },
+    { number: 8, type: "bullet", text: "- Role: Full-Stack Engineer (~5–6 years)" },
+    {
+      number: 9,
+      type: "bullet",
+      text: "- Focus: AI systems, frontend architecture, agent workflows, developer platforms",
+    },
+    {
+      number: 10,
+      type: "bullet",
+      text: "- Status: building Aivoid + exploring production AI infrastructure",
+    },
+    { number: 11, type: "bullet", text: "- Location: India" },
+  ] as const;
+
+  const handleCapture = async () => {
+    if (!captureRef.current) return;
+
+    const dataUrl = await toPng(captureRef.current, {
+      cacheBust: true,
+      pixelRatio: 3,
+      backgroundColor: "#000000",
+    });
+
+    const link = document.createElement("a");
+    link.download = "noormohammed-wallpaper.png";
+    link.href = dataUrl;
+    link.click();
+  };
+
+  return (
+    <main className="wallpaper-page">
+      <div className="wallpaper-stage">
+        <div className="wallpaper-toolbar">
+          <button className="wallpaper-capture-button" onClick={handleCapture} type="button">
+            Capture PNG
+          </button>
+        </div>
+        <section className="wallpaper-frame" aria-label="Mobile wallpaper preview">
+          <div className="wallpaper-canvas" ref={captureRef}>
+            <div className="wallpaper-safe-top" />
+            <div className="wallpaper-content">
+              {wallpaperLines.map((line) => (
+                <div className="wallpaper-line" key={line.number}>
+                  <span className="wallpaper-line-number">{line.number}</span>
+                  <div className="wallpaper-line-content">
+                    {line.type === "file" ? <span className="wallpaper-file">{line.text}</span> : null}
+                    {line.type === "blank" ? <span>&nbsp;</span> : null}
+                    {line.type === "h1" ? (
+                      <span className="wallpaper-h1">
+                        <span className="wallpaper-h1-mark">#</span>
+                        <span>{line.text.slice(2)}</span>
+                      </span>
+                    ) : null}
+                    {line.type === "quote" ? (
+                      <span className="wallpaper-quote">
+                        <span className="wallpaper-quote-mark">&gt; </span>
+                        <span>{line.text.slice(2)}</span>
+                      </span>
+                    ) : null}
+                    {line.type === "h2" ? <span className="wallpaper-h2">{line.text}</span> : null}
+                    {line.type === "bullet" ? (
+                      <span className="wallpaper-bullet">
+                        <span className="wallpaper-bullet-mark">- </span>
+                        <span>{line.text.slice(2)}</span>
+                      </span>
+                    ) : null}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  );
+}
+
 function App() {
   const [view, setView] = useState<ViewMode>(() => getInitialView());
 
@@ -903,6 +1001,7 @@ function App() {
 
   if (view === "v1") return <LandingPageV1 />;
   if (view === "v3") return <LandingPageV3 />;
+  if (view === "wallpaper") return <LandingPageWallpaper />;
   return <LandingPageV2 />;
 }
 

@@ -1,0 +1,12 @@
+<svg width="160" height="44" viewBox="0 0 160 44" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="logoTitle logoDesc">
+  <title id="logoTitle">[N$_] logo</title>
+  <desc id="logoDesc">Bracketed monospace logo mark for Noormohammed Shikalgar portfolio.</desc>
+  <rect width="160" height="44" rx="8" fill="none"/>
+  <g font-family="JetBrains Mono, Fira Code, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, monospace" font-size="28" font-weight="800" letter-spacing="-1.2">
+    <text x="8" y="31" fill="#83A598">[</text>
+    <text x="31" y="31" fill="#FDF4C1">N</text>
+    <text x="55" y="31" fill="#BEFF00">$</text>
+    <text x="78" y="31" fill="#00FFF5">_</text>
+    <text x="101" y="31" fill="#83A598">]</text>
+  </g>
+</svg>
