@@ -1,0 +1,28 @@
+.pf-badge {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--pf-color-border);
+  border-radius: var(--pf-radius-pill);
+  background: var(--pf-color-surface);
+  color: var(--pf-color-text-soft);
+  font-family: var(--pf-font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1;
+  padding: 0.36rem 0.55rem;
+}
+
+.pf-badge-accent {
+  border-color: transparent;
+  background: var(--pf-color-accent-soft);
+  color: var(--pf-color-accent-strong);
+}
+
+.pf-tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--pf-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}

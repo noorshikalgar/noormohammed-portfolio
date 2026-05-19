@@ -1,0 +1,13 @@
+:root,
+[data-pf-theme="dark"] {
+  --pf-color-bg: #101214;
+  --pf-color-bg-soft: #15191d;
+  --pf-color-surface: #1b2025;
+  --pf-color-surface-2: #222830;
+  --pf-color-border: #333b45;
+  --pf-color-border-strong: #46515d;
+  --pf-color-text: #f2f5f7;
+  --pf-color-text-soft: #c8d0d8;
+  --pf-color-muted: #8c98a6;
+  --pf-color-faint: #65717f;
+}

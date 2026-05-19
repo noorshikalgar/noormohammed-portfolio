@@ -1,0 +1,36 @@
+.pf-alert {
+  display: grid;
+  gap: var(--pf-space-2);
+  border: 1px solid var(--pf-alert-border, var(--pf-color-border));
+  border-radius: var(--pf-radius-md);
+  background: var(--pf-alert-bg, var(--pf-color-surface));
+  color: var(--pf-alert-text, var(--pf-color-text-soft));
+  padding: var(--pf-space-4);
+}
+
+.pf-alert-title {
+  margin: 0;
+  color: var(--pf-color-text);
+  font-weight: 800;
+}
+
+.pf-alert-info {
+  --pf-alert-bg: rgb(96 165 250 / 12%);
+  --pf-alert-border: rgb(96 165 250 / 36%);
+  --pf-alert-text: var(--pf-color-text-soft);
+}
+
+.pf-alert-success {
+  --pf-alert-bg: rgb(74 222 128 / 12%);
+  --pf-alert-border: rgb(74 222 128 / 34%);
+}
+
+.pf-alert-warning {
+  --pf-alert-bg: rgb(250 204 21 / 13%);
+  --pf-alert-border: rgb(250 204 21 / 34%);
+}
+
+.pf-alert-danger {
+  --pf-alert-bg: rgb(251 113 133 / 13%);
+  --pf-alert-border: rgb(251 113 133 / 36%);
+}

@@ -1,0 +1,39 @@
+.pf-timeline {
+  display: grid;
+  gap: var(--pf-space-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pf-timeline-item {
+  position: relative;
+  display: grid;
+  gap: var(--pf-space-2);
+  border-left: 1px solid var(--pf-color-border);
+  padding-left: var(--pf-space-5);
+}
+
+.pf-timeline-item::before {
+  position: absolute;
+  top: 0.35rem;
+  left: -0.37rem;
+  width: 0.7rem;
+  height: 0.7rem;
+  border: 2px solid var(--pf-color-bg);
+  border-radius: 50%;
+  background: var(--pf-color-accent);
+  content: "";
+}
+
+.pf-timeline-date {
+  color: var(--pf-color-muted);
+  font-family: var(--pf-font-mono);
+  font-size: var(--pf-step--1);
+}
+
+.pf-timeline-title {
+  margin: 0;
+  color: var(--pf-color-text);
+  font-weight: 800;
+}

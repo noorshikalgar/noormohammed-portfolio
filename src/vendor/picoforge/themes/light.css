@@ -1,0 +1,18 @@
+[data-pf-theme="light"] {
+  color-scheme: light;
+
+  --pf-color-bg: #f6f7f9;
+  --pf-color-bg-soft: #ffffff;
+  --pf-color-surface: #ffffff;
+  --pf-color-surface-2: #edf1f5;
+  --pf-color-border: #d7dee7;
+  --pf-color-border-strong: #b7c3cf;
+  --pf-color-text: #111820;
+  --pf-color-text-soft: #354250;
+  --pf-color-muted: #687583;
+  --pf-color-faint: #8b97a4;
+  --pf-color-accent-soft: rgb(0 137 158 / 13%);
+  --pf-shadow-sm: 0 1px 2px rgb(17 24 32 / 8%);
+  --pf-shadow-md: 0 12px 36px rgb(17 24 32 / 12%);
+  --pf-shadow-lg: 0 24px 70px rgb(17 24 32 / 14%);
+}

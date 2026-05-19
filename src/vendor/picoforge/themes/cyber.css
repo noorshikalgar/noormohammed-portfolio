@@ -1,0 +1,20 @@
+[data-pf-accent="cyber"] {
+  --pf-color-accent: #00e5ff;
+  --pf-color-accent-strong: #7df9ff;
+  --pf-color-accent-soft: rgb(0 229 255 / 15%);
+  --pf-gradient-accent: linear-gradient(135deg, #00e5ff, #b6ff4d);
+}
+
+[data-pf-accent="ember"] {
+  --pf-color-accent: #ff7a3d;
+  --pf-color-accent-strong: #ffb088;
+  --pf-color-accent-soft: rgb(255 122 61 / 15%);
+  --pf-gradient-accent: linear-gradient(135deg, #ff7a3d, #ffd166);
+}
+
+[data-pf-accent="violet"] {
+  --pf-color-accent: #a78bfa;
+  --pf-color-accent-strong: #c4b5fd;
+  --pf-color-accent-soft: rgb(167 139 250 / 16%);
+  --pf-gradient-accent: linear-gradient(135deg, #a78bfa, #67e8f9);
+}

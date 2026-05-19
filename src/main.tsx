@@ -1,6 +1,6 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import "@picoforge/css";
+import "./vendor/picoforge/picoforge.css";
 import "./styles.css";
 import App from "./App";
 

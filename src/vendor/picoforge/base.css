@@ -1,0 +1,60 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background: var(--pf-color-bg);
+  color: var(--pf-color-text);
+  font-family: var(--pf-font-body);
+  line-height: var(--pf-leading-body);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  min-height: 100%;
+  margin: 0;
+  background:
+    linear-gradient(180deg, rgb(255 255 255 / 3%), transparent 18rem),
+    var(--pf-color-bg);
+  color: var(--pf-color-text);
+}
+
+img,
+picture,
+svg,
+video,
+canvas {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+a {
+  color: var(--pf-color-accent-strong);
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.18em;
+}
+
+a:hover {
+  color: var(--pf-color-text);
+}
+
+:focus-visible {
+  outline: none;
+  box-shadow: var(--pf-focus-ring);
+}
+
+::selection {
+  background: var(--pf-color-accent-soft);
+  color: var(--pf-color-text);
+}

@@ -11,7 +11,6 @@
     "test:visual": "node scripts/visual-smoke.mjs"
   },
   "dependencies": {
-    "@picoforge/css": "file:../picoforge-design-system/packages/css",
     "lucide-react": "^0.555.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"

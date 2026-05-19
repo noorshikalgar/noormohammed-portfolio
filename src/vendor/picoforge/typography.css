@@ -1,0 +1,77 @@
+.pf-display,
+.pf-h1,
+.pf-h2,
+.pf-h3,
+.pf-h4 {
+  margin: 0;
+  color: var(--pf-color-text);
+  font-family: var(--pf-font-heading);
+  font-weight: 750;
+  letter-spacing: 0;
+  line-height: var(--pf-leading-title);
+}
+
+.pf-display {
+  font-size: clamp(2.8rem, 7vw, 5.8rem);
+  line-height: var(--pf-leading-tight);
+}
+
+.pf-h1 {
+  font-size: clamp(2.25rem, 5vw, 4rem);
+}
+
+.pf-h2 {
+  font-size: clamp(1.8rem, 3vw, 2.75rem);
+}
+
+.pf-h3 {
+  font-size: clamp(1.35rem, 2vw, 1.8rem);
+}
+
+.pf-h4 {
+  font-size: 1.125rem;
+}
+
+.pf-copy {
+  max-width: 68ch;
+  margin: 0;
+  color: var(--pf-color-text-soft);
+  font-size: var(--pf-step-1);
+}
+
+.pf-muted {
+  color: var(--pf-color-muted);
+}
+
+.pf-kicker {
+  margin: 0 0 var(--pf-space-3);
+  color: var(--pf-color-accent-strong);
+  font-family: var(--pf-font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.pf-prose {
+  max-width: 72ch;
+  color: var(--pf-color-text-soft);
+}
+
+.pf-prose h1,
+.pf-prose h2,
+.pf-prose h3 {
+  color: var(--pf-color-text);
+  font-family: var(--pf-font-heading);
+  line-height: var(--pf-leading-title);
+}
+
+.pf-prose code {
+  border: 1px solid var(--pf-color-border);
+  border-radius: var(--pf-radius-sm);
+  background: var(--pf-color-surface);
+  color: var(--pf-color-accent-strong);
+  font-family: var(--pf-font-mono);
+  font-size: 0.9em;
+  padding: 0.12em 0.32em;
+}
